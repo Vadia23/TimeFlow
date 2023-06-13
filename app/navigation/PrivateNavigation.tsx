@@ -1,11 +1,33 @@
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { FC } from 'react'
 import { Text, View } from 'react-native'
 
+import { Auth } from '@/components/screens'
+
+import { useAuth } from '@/hooks/useAuth'
+
+import { TypeRootStackParamList } from './navigation.types'
+import { routes } from './routes'
+
+const Stack = createNativeStackNavigator<TypeRootStackParamList>()
+
 const PrivateNavigation: FC = () => {
+	const { user } = useAuth()
 	return (
-		<View>
-			<Text>PrivateNavigation</Text>
-		</View>
+		<Stack.Navigator
+			screenOptions={{
+				headerShown: false,
+				contentStyle: {
+					backgroundColor: '#1E1C2E'
+				}
+			}}
+		>
+			{user ? (
+				routes.map(route => <Stack.Screen key={route.name} {...route} />)
+			) : (
+				<Stack.Screen name='Auth' component={Auth} />
+			)}
+		</Stack.Navigator>
 	)
 }
 

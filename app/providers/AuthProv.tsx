@@ -24,11 +24,25 @@ export const AuthContext = createContext({} as IContext)
 
 let ignore = Splash.preventAutoHideAsync()
 
-const PrivateNavigation: FC<PropsWithChildren<unknown>> = ({ children }) => {
-	const [user, setUser] = useState<TypeUserState>(null)
+const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
+	const [user, setUser] = useState<TypeUserState>({} as IUser)
 
+	console.log(user)
 	useEffect(() => {
-		// Get user ftom async storage and write to store
+		let isMounted = false
+
+		const getUserFromStorage = async () => {
+			if (isMounted) {
+				// Get user ftom async storage and write to store
+			}
+			await Splash.hideAsync()
+		}
+
+		let ignore = getUserFromStorage()
+
+		return () => {
+			isMounted = false
+		}
 	}, [])
 	return (
 		<AuthContext.Provider value={{ user, setUser }}>
@@ -37,4 +51,4 @@ const PrivateNavigation: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	)
 }
 
-export default PrivateNavigation
+export default AuthProvider
