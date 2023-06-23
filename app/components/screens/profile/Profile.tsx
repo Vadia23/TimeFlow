@@ -1,10 +1,19 @@
 import { FC } from 'react'
 import { Text, View } from 'react-native'
 
+import Button from '@/components/ui/Button'
 import Layout from '@/components/ui/layout/Layout'
 
+import { useAuth } from '@/hooks/useAuth'
+
 const Profile: FC = () => {
-	return <Layout title='Profile'></Layout>
+	const { setUser } = useAuth()
+
+	return (
+		<Layout title='Profile'>
+			<Button onPress={() => setUser(null)}>Logout</Button>
+		</Layout>
+	)
 }
 
 export default Profile
