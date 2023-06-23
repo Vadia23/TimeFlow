@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { FC } from 'react'
-import { Text, View } from 'react-native'
 
 import { Auth } from '@/components/screens'
 

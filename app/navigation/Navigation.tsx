@@ -11,7 +11,7 @@ import { useAuth } from '@/hooks/useAuth'
 import PrivateNavigation from './PrivateNavigation'
 
 const Navigation: FC = () => {
-	const user = useAuth()
+	const { user } = useAuth()
 
 	const [curentRoute, setCurentRoute] = useState<string | undefined>(undefined)
 
